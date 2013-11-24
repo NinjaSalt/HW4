@@ -84,4 +84,4 @@ use_janrain(auth, filename='private/janrain.key')
 
 db.define_table('pres',
                 Field('name','string'),
-                Field('count','integer'))
+                Field('mycount','integer'))

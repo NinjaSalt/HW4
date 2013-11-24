@@ -78,8 +78,18 @@ def data():
     return dict(form=crud())
 
 def get_val():
-    print "made it"
+    myid = request.vars.id
+    myid = int(myid)
     presis = db().select(db.pres.ALL)
     for row in presis:
-        return row.mycount
+        if myid == row.id:
+            return row.mycount
     return 'None'
+
+def update_val():
+    myid = request.vars.id
+    myid = int(myid)
+    newVal = request.vars.newVal
+    newVal = int(newVal)
+    print myid
+    db(db.pres.id == myid).update(mycount=newVal)
