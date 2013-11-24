@@ -77,6 +77,8 @@ def data():
     """
     return dict(form=crud())
 
+##Will be called from a view where a president's id is passed in. That id is turned into
+##an int and compared aginst the ids in the database. Once found the count is  return.
 def get_val():
     myid = request.vars.id
     myid = int(myid)
@@ -86,12 +88,13 @@ def get_val():
             return row.mycount
     return 'None'
 
+##Will be called from a view where a president's id is passed in. That id is turned into
+##an int and compared aginst the ids in the database. Once found the count is  updated.
 def update_val():
     myid = request.vars.id
     myid = int(myid)
     newVal = request.vars.newVal
     newVal = int(newVal)
-    print myid
     db(db.pres.id == myid).update(mycount=newVal)
     
 def part1():
@@ -100,6 +103,7 @@ def part1():
 def part2():
     return dict()
 
+##A basic grid to search in
 def results():
     grid = SQLFORM.grid(db.pres)
     return dict(grid=grid)

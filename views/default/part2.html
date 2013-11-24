@@ -7,13 +7,13 @@
   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
   <style>
   #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-  #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+  #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; width: 45%;float:left;background:#B9CDF0;border: thick solid  #1B4388;border-radius:25px;}
   #sortable li span { position: absolute; margin-left: -1.3em; }
   </style>
   <script>
   var pos=[1,2,3,4,5,6,7,8,9,10];
   
-      //found on stack overflow
+      //found on stack overflow but just randomize the array
   function shuffle(array) {
     for (var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
@@ -23,6 +23,7 @@
     }
     return array;
 }
+      //sort the divs into the order of the randomized array
   $(function() {
       shuffle(pos);
       var j = 0;
@@ -31,7 +32,7 @@
           $(this).insertAfter($(mystr));
           j=j+1;
        });
-      
+      //on update check if you've won and if so change the background of the divs and the content of the header
     $( "#sortable" ).sortable({
         start: function(event, ui) {
             var start_pos = ui.item.index();
@@ -47,7 +48,10 @@
                 }
               });
             if(checkWin==0){
-                    console.log("You win");
+                    $('#sortable li').each( function(e) {
+                        $(this).css('background', '#FFD600');
+                    });
+                    $( "#topP" ).replaceWith( "<h2>You Win!</h2>" );
                 }
         }
     });
@@ -55,19 +59,24 @@
   });
   </script>
 </head>
+<div id=topP>
+    <h2>
+        President Swap
+    </h2>
+</div>
 <div>
  
 <ul id="sortable">
-  <li class="ui-state-default" value="1"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>
-  <li class="ui-state-default" value="2"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
-  <li class="ui-state-default" value="3"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
-  <li class="ui-state-default" value="4"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
-  <li class="ui-state-default" value="5"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
-  <li class="ui-state-default" value="6"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
-  <li class="ui-state-default" value="7"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7</li>
-  <li class="ui-state-default" value="8"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 8</li>
-  <li class="ui-state-default" value="9"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 9</li>
-  <li class="ui-state-default" value="10"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 10</li>
+  <li class="ui-state-default" value="1"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Barrack Obama</li>
+  <li class="ui-state-default" value="2"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>George W. Bush</li>
+  <li class="ui-state-default" value="3"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Bill Clinton</li>
+  <li class="ui-state-default" value="4"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>George H.W. Bush</li>
+  <li class="ui-state-default" value="5"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Ronald Reagan</li>
+  <li class="ui-state-default" value="6"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Jimmy Carter</li>
+  <li class="ui-state-default" value="7"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Gerald Ford</li>
+  <li class="ui-state-default" value="8"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Richard Nixon</li>
+  <li class="ui-state-default" value="9"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Lyndon B. Johnson</li>
+  <li class="ui-state-default" value="10"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>John F. Kennedy</li>
 </ul>
  
  

@@ -1,12 +1,14 @@
 {{extend 'layout.html'}}
 <script>
+    //set up all the variables
     var val;
     var id=0;
     var test;
     var presCount = new Array();
+    //Onload go through an get each count value from the database and store it in an array
     window.onload = function(){
         var i = 0;
-        while (i<3){
+        while (i<10){
             id = id+1;
             $.ajax({  
                     type: "GET",  
@@ -19,7 +21,7 @@
             i=i+1;
         }
 }
-
+    //when the plus button is clicked send an id and a number(from the array) to update_val
     $(document).ready(function() {
       $(".btnP").click(function() {
           myid=$(this).val();
@@ -36,7 +38,7 @@
       });
 
     });
-    
+    //when the minus button is clicked send an id and a number(from the array) to update_val
     $(document).ready(function() {
       $(".btnM").click(function() {
           myid=$(this).val();

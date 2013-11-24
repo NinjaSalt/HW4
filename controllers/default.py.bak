@@ -97,6 +97,9 @@ def update_val():
 def part1():
     return dict()
 
+def part2():
+    return dict()
+
 def results():
     grid = SQLFORM.grid(db.pres)
     return dict(grid=grid)
