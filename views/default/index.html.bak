@@ -1,0 +1,22 @@
+{{extend 'layout.html'}}
+<script>
+    var val="Poo";
+    var presCount = new Array();
+    $(document).ready(function() {
+      $("#plus").click(function() {
+          $.get( "{{=URL('get_val')}}", function( val ) {
+          alert( "Data Loaded: " + val );
+         });
+      });
+
+    });
+</script>
+
+{{presis = db().select(db.pres.ALL)}}
+{{for pres in presis:}}
+<div style="width: 45%;float:left;background:#B9CDF0;border: thick solid  #1B4388;border-radius:25px; padding-left:20px; padding-right:20px; margin: 10px;">
+    <h3>
+        {{=pres.name}}<button style="float: right;" id="minus" class="btn">-</button><button style="float: right;" id="plus" class="btn">+</button>
+    </h3>
+</div>
+{{pass}}
