@@ -93,3 +93,13 @@ def update_val():
     newVal = int(newVal)
     print myid
     db(db.pres.id == myid).update(mycount=newVal)
+    
+def part1():
+    return dict()
+
+def part2():
+    return dict()
+
+def results():
+    grid = SQLFORM.grid(db.pres)
+    return dict(grid=grid)

@@ -1,0 +1,71 @@
+{{extend 'layout.html'}}
+<script>
+    var val;
+    var id=0;
+    var test;
+    var presCount = new Array();
+    window.onload = function(){
+        var i = 0;
+        while (i<3){
+            id = id+1;
+            $.ajax({  
+                    type: "GET",  
+                    url: "{{=URL('get_val')}}",  
+                    data: {id: id},
+                    success: function(val) {
+                        presCount.push(Number(val));
+                    }
+             });
+            i=i+1;
+        }
+}
+
+    $(document).ready(function() {
+      $(".btnP").click(function() {
+          myid=$(this).val();
+          myid = Number(myid);
+          presCount[myid]=presCount[myid]+1;
+          presId = myid+1;
+          $.ajax({  
+                type: "POST",  
+                url: "{{=URL('update_val')}}",  
+                data: {id: presId, newVal: presCount[myid]},
+                success: function() {
+                }
+         });
+      });
+
+    });
+    
+    $(document).ready(function() {
+      $(".btnM").click(function() {
+          myid=$(this).val();
+          myid = Number(myid);
+          presCount[myid]=presCount[myid]-1;
+          presId = myid+1;
+          $.ajax({  
+                type: "POST",  
+                url: "{{=URL('update_val')}}",  
+                data: {id: presId, newVal: presCount[myid]},
+                success: function() {
+                }
+         });
+      });
+
+    });
+</script>
+
+<h2>
+    {{=A('Results', _href=URL('results'))}}
+</h2>
+
+{{presis = db().select(db.pres.ALL)}}
+{{i=0}}
+{{for pres in presis:}}
+<div style="width: 45%;float:left;background:#B9CDF0;border: thick solid  #1B4388;border-radius:25px; padding-left:20px; padding-right:20px; margin: 10px;">
+    <h3>
+        {{=pres.name}}<button style="float: right;" id="minus{{=i}}" class="btnM" value="{{=i}}">-</button><button style="float: right;" id="plus{{=i}}" class="btnP" value="{{=i}}">+</button>
+    </h3>
+</div>
+{{i=i+1}}
+{{pass}}
